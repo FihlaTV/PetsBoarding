@@ -1,25 +1,71 @@
 <head>
-  <title>pet-boarding</title>
+
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
+  <h1>Pet Boarding</h1>
 
-  {{> hello}}
-  {{> info}}
+
 </body>
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+<template name="mainpage">
+    {{> navigation}}
 </template>
 
-<template name="info">
-  <h2>Learn Meteor!</h2>
+<template name="register">
+    <h2>Register</h2>
+    <form class="register">
+        <p>Email: <input type="email" name="email"></p>
+        <p>Password: <input type="password" name="password"></p>
+        <p><input type="submit" value="Register"></p>
+    </form>
+</template>
+
+<template name="caregiver">
+    <h2>Wanna Be a Care Giver?</h2>
+    <form class="caregiver">
+        <p>Email: <input type="email" name="email"></p>
+        <p>Name: <input type="name" name="name"></p>
+        <p>Phone: <input type="phone" name="phone"></p>
+        <p>Location: <input type="city" name="city"></p>
+        <p>Type: <input type="type" name="type"></p>
+        <p><input type="submit" value="Register"></p>
+    </form>
+</template>
+
+<template name="navigation">
   <ul>
-    <li><a href="https://www.meteor.com/try" target="_blank">Do the Tutorial</a></li>
-    <li><a href="http://guide.meteor.com" target="_blank">Follow the Guide</a></li>
-    <li><a href="https://docs.meteor.com" target="_blank">Read the Docs</a></li>
-    <li><a href="https://forums.meteor.com" target="_blank">Discussions</a></li>
+    <li><a href="{{pathFor route='mainpage'}}">Home</a></li>
+    {{#if currentUser}}
+        <li><a href="#" class="logout">Logout</a></li>
+        <li><a href="{{pathFor route='caregiver'}}" class="caregiver">Care Giver Register</a></li>
+    {{else}}
+        <li><a href="{{pathFor route='register'}}">Register</a></li>
+        <li><a href="{{pathFor route='login'}}">Login</a></li>
+    {{/if}}
+
+    <form class="search">
+        <p>City <input type="city" name="city"></p>
+        <p>Types<input type="types" name="types"></p>
+        <p><input type="submit" value="Confirm"></p>
+    </form>
   </ul>
+</template>
+
+<template name="result">
+    <h2>Result</h2>
+    <form class="result">
+        <p>Email: <input type="email" name="email"></p>
+        <p>Password: <input type="password" name="password"></p>
+        <p><input type="submit" value="Login"></p>
+    </form>
+</template>
+
+<template name="login">
+    <h2>Login</h2>
+    <form class="login">
+        <p>Email: <input type="email" name="email"></p>
+        <p>Password: <input type="password" name="password"></p>
+        <p><input type="submit" value="Login"></p>
+    </form>
 </template>
