@@ -1,6 +1,7 @@
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
-import { Hosts, CareGiver } from '../imports/api/task.js'
+import { Hosts } from '../imports/api/task.js'
+import { Session } from 'meteor/session'
 var MongoClient = require('mongodb').MongoClient;
 import './main.html';
 
@@ -54,17 +55,20 @@ Template.register.events({
 Template.caregiver.events({
     'submit form': function(event){
         event.preventDefault();
-        var email = $('[name=email]').val();
+        var info = $('[name=info]').val();
         var name = $('[name=name]').val();
         var phone = $('[name=phone]').val();
-        var location = $('[name=location]').val();
+        var city = $('[name=location]').val();
         var type = $('[name=type]').val();
-        CareGiver.insert({
-                    email: email,
+        var price = $('[name=price]').val();
+        Hosts.insert({
                     name: name,
                     phone: phone,
-                    location: location,
-                    type: type
+                    city: city,
+                    location: city,
+                    types: type,
+                    price: price,
+                    info: info
                 });
         Router.go('mainpage');
     }
@@ -91,31 +95,39 @@ Template.mainpage.onCreated(function mainOnCreated() {
 Template.mainpage.helpers({
   find_hosts_num() {
     return Hosts.find().count();
-  },
-  get_hosts(){
-    console.log(Hosts.find());
-    return Hosts.find();
-  },
+  }
 });
 
 Template.mainpage.events({
-  'click button'(event, instance) {
-    // increment the counter when button is clicked
-    console.log(Hosts.find().count());
-  },
   'click .logout': function(event){
       event.preventDefault();
       Meteor.logout();
       Router.go('login');
   }
 });
+
 Template.navigation.events({
   'submit form': function(event){
       event.preventDefault();
       var city = $('[name=city]').val();
-      var types = $('[name=types]').val();
-      Router.go('result');
-      console.log("after router");
-      return Hosts.find({city: city,types: types});
-  }
+      Session.set('city',city);
+      console.log(Session.get('type'));
+      type = Session.get('type');
+      console.log('city has '+Hosts.find({city:city, types:type}).count());
+      return Hosts.find({city: city,types:type});
+  },
+  "change #category-select": function (event, template) {
+       var category = $(event.currentTarget).val();
+       Session.set('type',category);
+       console.log("animal: "+Session.get('type'));
+   }
+});
+
+Template.navigation.helpers({
+    categories: function(){
+        return ["Dog", "Cat", "Rabbit", "Caged Critter"]
+     },
+     item: function(){
+       return Hosts.find({city: Session.get('city'),types: Session.get('type')});
+     }
 });
