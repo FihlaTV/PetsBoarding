@@ -14,31 +14,31 @@
 
 <template name="register">
     <h2 class="head_conf">Register</h2>
-    <li><a href="{{pathFor route='mainpage'}}">Home</a></li>
+    <li style="top: 0px; left: 260px;position: absolute; font-size: 12px;"><a href="{{pathFor route='mainpage'}}">Home</a></li>
     <form class="register">
-        <p class="reg">Email:    <input type="email" name="email"></p>
-        <p class="reg">Password: <input type="password" name="password"></p>
-        <p><input type="submit" value="Register" style="background-color: #5eb8e2; width: 60%; position: relative; left: 20%; padding: 15px 0; font-size:20px;color: white; border-radius: 5px;border: 0px;"></p>
+        <p class="reg" style="top:50px;">Email:       <input class="input" type="email" name="email"></p>
+        <p class="reg" style="top:70px;">Password: <input class="input" type="password" name="password"></p>
+        <p><input type="submit" value="Register" style="top:100px; background-color: #5eb8e2; width: 60%; position: relative; left: 20%; padding: 15px 0; font-size:20px;color: white; border-radius: 5px;border: 0px;"></p>
     </form>
 </template>
 
 <template name="caregiver">
     <h2 class="head_conf">Wanna Be a Pet Sitter?</h2>
     <form class="caregiver">
-        <p class="reg">Email:  <input type="info" name="info"></p>
-        <p class="reg">Name:  <input type="name" name="name"></p>
-        <p class="reg">Phone: <input type="phone" name="phone"></p>
-        <p class="reg">City:    <input type="city" name="city"></p>
-        <p class="reg">Type:   <input type="type" name="type"></p>
-        <p class="reg">Price:  <input type="price" name="price"></p>
+        <p class="reg">Email:  <input input class="input" type="info" name="info"></p>
+        <p class="reg">Name:  <input input class="input" type="name" name="name"></p>
+        <p class="reg">Phone: <input input class="input" type="phone" name="phone"></p>
+        <p class="reg">City:    <input input class="input" type="city" name="city"></p>
+        <p class="reg">Type:   <input input class="input" type="type" name="type"></p>
+        <p class="reg">Price:  <input input class="input" type="price" name="price"></p>
         <p><input type="submit" value="Register" style="background-color: #5eb8e2; width: 60%; position: relative; left: 20%; padding: 15px 0; font-size:20px;color: white; border-radius: 5px;border: 0px;"></p>
     </form>
 </template>
 
 <template name="navigation">
-  <ul>
+  <ul style="background-color: rgba(0, 0, 0, 0.1);">
     {{#if currentUser}}
-        <li class = "link" style="top: 0px; left: 200px;position: absolute; font-size: 12px;"><a href="#" class="logout">Logout</a></li>
+        <li class = "link" style="top: 0px; left: 260px;position: absolute; font-size: 12px;"><a href="#" class="logout">Logout</a></li>
         <li ><a style="color:#5eb8e2;" href="{{pathFor route='caregiver'}}" class="caregiver">* Care Giver Register</a></li>
     {{else}}
         <li class = "link" style="top: 0px; left: 200px;position: absolute; font-size: 12px;"><a href="{{pathFor route='register'}}">Register</a></li>
@@ -46,37 +46,56 @@
     {{/if}}
 
     <form class="search" style="opacity: 0.7;">
-        <p class="search_text"> City <input type="city" name="city"></p>
+        <p class="search_text"> City   <input type="city" name="city" style="border-radius:5px;"></p>
         <p class="search_text"> Service Type</p>
         <select id="category-select">
-          <option class="search_text" disabled="disabled" selected="selected">Select Type</option>
+          <option class="search_text" disabled="disabled" selected="selected">   </option>
           {{#each categories}}
             <option value="{{this}}">{{this}}</option>
           {{/each}}
         </select>
-        <p><input type="submit" value="Confirm"></p>
+        <p class="search_text"> Rating</p>
+        <select id="rating-select">
+          <option class="search_text" disabled="disabled" selected="selected">   </option>
+          {{#each scores}}
+            <option value="{{this}}">{{this}}</option>
+          {{/each}}
+        </select>
+        <p ><input type="submit" value="Confirm" style="background-color: #5eb8e2; width: 30%; position: relative; left: 75%; padding: 3px 0; font-size:12px;color: white; border-radius: 5px;border: 0px;"></p>
     </form>
     <form class="display">
           {{#each item}}
-            <div style="background-color:rgb(192, 207, 209); background-size: contain; border: 1px solid; border-radius:10px; border-color:rgb(146, 148, 152); ">
-              <p class="search_text" value="{{name}}">Name: {{name}}</p>
-              <p class="search_text" value="{{info}}">Information: {{info}}</p>
-              <p class="search_text" value="{{location}}">Location: {{location}}</p>
-              <p class="search_text" value="{{phone}}">Phone: {{phone}}</p>
-              <p class="search_text" value="{{price}}">Price: ${{price}}</p>
-              <p class="search_text"></p>
+            <div class='single_host' style="background-color:#2F516F; background-size: contain; border: 1px solid; border-radius:5px; border-color:rgb(146, 148, 152); ">
+              <p class="search_text"> </p>
+              <p class="search_text" value="{{name}}">Name:          {{name}}</p>
+              <p class="search_text" value="{{info}}">Information:  {{info}}</p>
+              <p class="search_text" value="{{location}}">Location:      {{location}}</p>
+              <p class="search_text" value="{{phone}}">Phone:         {{phone}}</p>
+              <p class="search_text" value="{{price}}">Price:            ${{price}}</p>
+              <p class="search_text" value="{{score}}">Rate:              {{score}}</p>
+              <li class = "comment" value="{{name}}" style="left: 200px;font-size: 10px;"><a href="{{pathFor route='comment'}}">Leave a comment</a></li>
+              <p class="search_text"> </p>
             </div>
           {{/each}}
     </form>
   </ul>
 </template>
 
-<template name="result">
-    <h2>Result</h2>
-    <form class="result">
-        <p>Email <input type="email" name="email"></p>
-        <p>Password <input type="password" name="password"></p>
-        <p><input type="submit" value="Login" style="background-color: #5eb8e2; width: 60%; position: relative; left: 20%; padding: 15px 0; font-size:20px;color: white; border-radius: 5px;border: 0px;"></p>
+<template name="comment">
+    <h2 class="head_conf" style="top:25px;">Whatcha Thinking About?</h2>
+    <li style="top: 0px; left: 260px;position: absolute; font-size: 12px;"><a href="{{pathFor route='mainpage'}}">Home</a></li>
+    <form class="comment" style="left:15%; top:45px;">
+        <p style="color: white;"> Your Rating</p>
+        <select id="rating-select">
+          <option  disabled="disabled" selected="selected" style="color: grey;">Score</option>
+          {{#each scores}}
+            <option value="{{this}}">{{this}}</option>
+          {{/each}}
+        </select>
+        <p style="top:55px; color: white;"> Your Comment</p>
+        <textarea name="textarea" rows="12" cols="50" style="width: 70%; font-size: 10px; color: grey; border-radius:5px;">
+        </textarea>
+        <p ><input type="submit" value="Submit!" style="top:60px;background-color: #5eb8e2; width: 60%; position: relative; left: 5%; padding: 10px 0; font-size:20px;color: white; border-radius: 5px;border: 0px;"></p>
     </form>
 </template>
 

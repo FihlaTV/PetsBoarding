@@ -17,13 +17,13 @@ body {
   font-size: 16px;
 }
 .search_text{
-  color: #5eb8e2;
+  color: white;
   border-radius: 5px;
   border: 0px;
   left: 5%;
   margin: 1px;
   text-align:left;
-  font-size: 15px;
+  font-size: 12px;
   white-space: pre-wrap;
 }
 .input{
@@ -191,7 +191,7 @@ header .hide-completed {
   }
 
   .search {
-    width: 150px;
+    width: 300px;
     clear: both;
   }
 
