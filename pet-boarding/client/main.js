@@ -115,7 +115,6 @@ Template.navigation.events({
       event.preventDefault();
       var city = $('[name=city]').val();
       Session.set('city',city);
-      console.log(Session.get('type'));
       type = Session.get('type');
       score = Number(Session.get('score'));
       console.log('city has '+Hosts.find({city:city, types:type, score:score}).count());
@@ -124,7 +123,6 @@ Template.navigation.events({
   "change #category-select": function (event, template) {
        var category = $(event.currentTarget).val();
        Session.set('type',category);
-       console.log("animal: "+Session.get('type'));
    },
    "change #rating-select": function (event, template) {
         var score = $(event.currentTarget).val();
@@ -158,13 +156,13 @@ Template.comment.events({
       var rate = Session.get('rate');
       var comment = $('[name=textarea]').val();
       console.log('rate is : '+Session.get('rate'));
-      if(Ratings.find({name:name}).count() == 0){
+      //if(Ratings.find({name:name}).count() == 0){
         Ratings.insert({
                     name: name,
                     rating: rate,
                     comment: comment
                   });
-      }
+    //  }
       //Hosts.update({name : name},{$set:{rating: rate}});
       var id = Hosts.find({name:name}).fetch();
       var index;
@@ -192,7 +190,7 @@ Template.comment.events({
 
 Template.comment.helpers({
     scores: function(){
-        return [1, 2, 3, 4, 5]
+        return [1, 2, 3, 4, 5];
      },
      item: function(){
        return Hosts.find({city: Session.get('city'),types: Session.get('type')});
