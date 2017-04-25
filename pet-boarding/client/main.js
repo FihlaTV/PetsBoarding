@@ -30,6 +30,10 @@ Router.route('/comment', {
     name: 'comment',
     template: 'comment'
 });
+Router.route('/review', {
+    name: 'review',
+    template: 'review'
+});
 
 /*MongoClient.connect('mongodb://user:user@ds161960.mlab.com:61960/cosmos', function(err, db) {
   if(err) throw err;
@@ -132,7 +136,7 @@ Template.navigation.events({
      //event.preventDefault();
      var host = event.currentTarget.getAttribute('value');
      Session.set('host',host);
-     console.log('host is :' + host);
+     console.log('host is '+Session.get('host'));
    }
 });
 
@@ -157,11 +161,11 @@ Template.comment.events({
       var comment = $('[name=textarea]').val();
       console.log('rate is : '+Session.get('rate'));
       //if(Ratings.find({name:name}).count() == 0){
-        Ratings.insert({
+      Ratings.insert({
                     name: name,
                     rating: rate,
                     comment: comment
-                  });
+                });
     //  }
       //Hosts.update({name : name},{$set:{rating: rate}});
       var id = Hosts.find({name:name}).fetch();
@@ -194,5 +198,11 @@ Template.comment.helpers({
      },
      item: function(){
        return Hosts.find({city: Session.get('city'),types: Session.get('type')});
+     }
+});
+Template.review.helpers({
+     item: function(){
+       console.log("run item and host is : "+Session.get('host')+Ratings.find({name: Session.get('host')}).count());
+       return Ratings.find({name: Session.get('host')});
      }
 });

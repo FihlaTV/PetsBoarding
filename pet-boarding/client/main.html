@@ -39,7 +39,7 @@
   <ul style="background-color: rgba(0, 0, 0, 0.1);">
     {{#if currentUser}}
         <li class = "link" style="top: 0px; left: 260px;position: absolute; font-size: 12px;"><a href="#" class="logout">Logout</a></li>
-        <li ><a style="color:#5eb8e2;" href="{{pathFor route='caregiver'}}" class="caregiver">* Care Giver Register</a></li>
+        <li ><a style="top: 0px; left: 10px;position: absolute; font-size: 12px;" href="{{pathFor route='caregiver'}}" class="caregiver">Care Giver Register</a></li>
     {{else}}
         <li class = "link" style="top: 0px; left: 200px;position: absolute; font-size: 12px;"><a href="{{pathFor route='register'}}">Register</a></li>
         <li class="login" style="top: 0px; left: 260px;position: absolute; font-size: 12px;"><a href="{{pathFor route='login'}}">Login</a></li>
@@ -73,7 +73,24 @@
               <p class="search_text" value="{{phone}}">Phone:         {{phone}}</p>
               <p class="search_text" value="{{price}}">Price:            ${{price}}</p>
               <p class="search_text" value="{{score}}">Rating:          {{score}}</p>
+              <li class = "review" value="{{name}}" style="left: 200px;font-size: 10px;"><a href="{{pathFor route='review'}}">Review</a></li>
               <li class = "comment" value="{{name}}" style="left: 200px;font-size: 10px;"><a href="{{pathFor route='comment'}}">Leave a comment</a></li>
+              <p class="search_text"> </p>
+            </div>
+          {{/each}}
+    </form>
+  </ul>
+</template>
+<template name="review">
+  <ul style="background-color: rgba(0, 0, 0, 0.1);">
+    <li style="top: 0px; left: 260px;position: absolute; font-size: 12px;"><a href="{{pathFor route='mainpage'}}">Home</a></li>
+    <form class="display">
+          {{#each item}}
+            <div class='single_host' style="background-color:#2F516F; background-size: contain; border: 1px solid; border-radius:5px; border-color:rgb(146, 148, 152); ">
+              <p class="search_text"> </p>
+              <p class="search_text" value="{{name}}">Name:            {{name}}</p>
+              <p class="search_text" value="{{rating}}">Rating:            {{rating}}</p>
+              <p class="search_text" value="{{comment}}">Comment:      {{comment}}</p>
               <p class="search_text"> </p>
             </div>
           {{/each}}
