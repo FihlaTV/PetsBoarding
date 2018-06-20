@@ -16,7 +16,7 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/XJi/PetsBoarding.git"
+    "url": "git+https://github.com/FihlaTV/PetsBoarding.git"
   },
   "keywords": [
     "Pet",
@@ -26,7 +26,7 @@
   "author": "Xiaojing Ji",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/XJi/PetsBoarding/issues"
+    "url": "https://github.com/FihlaTV/PetsBoarding/issues"
   },
-  "homepage": "https://github.com/XJi/PetsBoarding#readme"
+  "homepage": "https://github.com/FihlaTV/PetsBoarding#readme"
 }
