@@ -1,0 +1,44 @@
+<head>
+  <title>Minderz - Trusted Care for your Furkid</title>
+</head>
+
+<body>
+<h4>Find Trusted Care for your Fur-kid.</h4>
+            <p class="subtitle">It’s like having a pet loving neighbour or friend for your fur-kid 24/7.</p>
+</body>
+
+<template name="Home">
+  {{> Nav}}
+
+  <h1>Home</h1>
+
+  <p>
+    Data Title: {{title}}
+  </p>
+</template>
+
+<template name="One">
+  {{> Nav}}
+
+  <h1>Page One</h1>
+</template>
+
+<template name="Two">
+  {{> Nav}}
+
+  <h1>Page Two</h1>
+</template>
+
+<template name="Nav">
+  <ul>
+    <li>
+      <a href="/">Home</a>
+    </li>
+    <li>
+      <a href="/one">Page One</a>
+    </li>
+    <li>
+      <a href="/two">Page Two</a>
+    </li>
+  </ul>
+</template>
